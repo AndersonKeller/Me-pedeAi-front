@@ -23,8 +23,8 @@ export default function RootLayout({
           autoClose={3000}
           pauseOnHover={false}
           theme="dark"
-        />
-        {children}
+        />{" "}
+        <main className="w-full my-0 mx-auto py-4 px-8">{children}</main>
       </body>
     </html>
   );

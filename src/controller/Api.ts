@@ -1,11 +1,12 @@
-import { CreateEstablish, Establish } from "@/interfaces/establish.interface";
+import { CreateEstablish } from "@/interfaces/establish.interface";
 import { LoginData } from "@/interfaces/login.interface";
 import {
   CreateProduct,
   CreateTypeProduct,
 } from "@/interfaces/products.interface";
 import { userStore } from "@/store/user.store";
-
+import { parseCookies } from "nookies";
+import { Establish } from "./../interfaces/establish.interface";
 export class Service {
   constructor() {}
   baseURL = "http://localhost:3333/";
@@ -13,6 +14,9 @@ export class Service {
     "Content-Type": "application/json; charset=utf-8",
   };
   setToken = userStore().setToken;
+  setEstablish = userStore().setEstablish;
+
+  cookies = parseCookies();
   //establish
   async establishLogin(loginData: LoginData): Promise<string | undefined> {
     try {
@@ -50,7 +54,9 @@ export class Service {
       });
 
       if (res.status == 201) {
-        return await res.json();
+        const establish = await res.json();
+        this.setEstablish(establish);
+        return establish;
       } else {
         return undefined;
       }
@@ -90,12 +96,18 @@ export class Service {
     return await res.json();
   }
   //menus
-  async getMenu(token: string, establishId: string) {
-    const res = await fetch(`${this.baseURL}menu/${establishId}`, {
-      headers: { ...this.headers, Authorization: `Bearer ${token}` },
-    });
+  async getMenu() {
+    const token = this.cookies["@mepedeAi-token"];
+    const establishJson = this.cookies["@mepedeAi-establish"];
+    if (establishJson) {
+      const establish: Establish = JSON.parse(establishJson);
+      const establishId = establish.id;
+      const res = await fetch(`${this.baseURL}menu/${establishId}`, {
+        headers: { ...this.headers, Authorization: `Bearer ${token}` },
+      });
 
-    return await res.json();
+      return await res.json();
+    }
   }
   async createMenu(token: string) {
     const res = await fetch(`${this.baseURL}menu`, {

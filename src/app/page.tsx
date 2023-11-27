@@ -1,5 +1,6 @@
 "use client";
 import { Header } from "@/components/header/Header";
+import { Menu } from "@/components/menu/Menu";
 import { Service } from "@/controller/Api";
 import { Establish } from "@/interfaces/establish.interface";
 import { useRouter } from "next/navigation";
@@ -25,8 +26,9 @@ export default function Home() {
     }
   });
   return (
-    <main className="w-full my-0 mx-auto py-4 px-8">
+    <>
       <Header />
-    </main>
+      <Menu />
+    </>
   );
 }
