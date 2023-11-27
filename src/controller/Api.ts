@@ -1,4 +1,4 @@
-import { CreateEstablish } from "@/interfaces/establish.interface";
+import { CreateEstablish, Establish } from "@/interfaces/establish.interface";
 import { LoginData } from "@/interfaces/login.interface";
 import {
   CreateProduct,
@@ -13,18 +13,26 @@ export class Service {
     "Content-Type": "application/json; charset=utf-8",
   };
   setToken = userStore().setToken;
-  //esta  blish
-  async establishLogin(loginData: LoginData) {
-    const res = await fetch(`${this.baseURL}login`, {
-      body: JSON.stringify(loginData),
-      method: "POST",
-      headers: this.headers,
-    });
+  //establish
+  async establishLogin(loginData: LoginData): Promise<string | undefined> {
+    try {
+      const res = await fetch(`${this.baseURL}login`, {
+        body: JSON.stringify(loginData),
+        method: "POST",
+        headers: this.headers,
+      });
 
-    const token = await res.json();
+      const token = await res.json();
 
-    this.setToken(token.token);
-    return token;
+      if (token.token) {
+        this.setToken(token.token);
+        return token.token;
+      } else {
+        return undefined;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   async createEstablish(establishData: CreateEstablish) {
     const res = await fetch(`${this.baseURL}establish`, {
@@ -35,12 +43,21 @@ export class Service {
 
     return await res.json();
   }
-  async establishRetrieve(token: string) {
-    const res = await fetch(`${this.baseURL}establish/retrieve`, {
-      headers: { ...this.headers, Authorization: `Bearer ${token}` },
-    });
+  async establishRetrieve(token: string): Promise<Establish | undefined> {
+    try {
+      const res = await fetch(`${this.baseURL}establish/retrieve`, {
+        headers: { ...this.headers, Authorization: `Bearer ${token}` },
+      });
 
-    return await res.json();
+      if (res.status == 201) {
+        return await res.json();
+      } else {
+        return undefined;
+      }
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
   }
   //types products
   async createTypeProduct(typeProductData: CreateTypeProduct, token: string) {
@@ -78,6 +95,13 @@ export class Service {
       headers: { ...this.headers, Authorization: `Bearer ${token}` },
     });
 
+    return await res.json();
+  }
+  async createMenu(token: string) {
+    const res = await fetch(`${this.baseURL}menu`, {
+      headers: { ...this.headers, Authorization: `Bearer ${token}` },
+      method: "POST",
+    });
     return await res.json();
   }
 }
