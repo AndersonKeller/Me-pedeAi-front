@@ -1,7 +1,7 @@
 "use client";
-import { Header } from "@/components/header/Header";
 import { Menu } from "@/components/menu/Menu";
 import { Service } from "@/controller/Api";
+import { useEffect } from "react";
 
 export default function Cardapio() {
   const api = new Service();
@@ -10,10 +10,11 @@ export default function Cardapio() {
 
     console.log(res);
   }
-  getMenu();
+  useEffect(() => {
+    getMenu();
+  }, []);
   return (
     <>
-      <Header />
       <Menu />
     </>
   );

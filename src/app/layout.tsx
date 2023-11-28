@@ -1,3 +1,4 @@
+import { Header } from "@/components/header/Header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -24,7 +25,8 @@ export default function RootLayout({
           pauseOnHover={false}
           theme="dark"
         />{" "}
-        <main className="w-full my-0 mx-auto py-4 px-8">{children}</main>
+        <Header />
+        <main className="w-full my-0 mx-auto py-4">{children}</main>
       </body>
     </html>
   );

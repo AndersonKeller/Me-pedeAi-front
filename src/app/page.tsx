@@ -1,5 +1,4 @@
 "use client";
-import { Header } from "@/components/header/Header";
 import { Menu } from "@/components/menu/Menu";
 import { Service } from "@/controller/Api";
 import { Establish } from "@/interfaces/establish.interface";
@@ -27,7 +26,6 @@ export default function Home() {
   });
   return (
     <>
-      <Header />
       <Menu />
     </>
   );
