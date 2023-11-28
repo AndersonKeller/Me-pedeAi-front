@@ -26,7 +26,7 @@ export default function RootLayout({
           theme="dark"
         />{" "}
         <Header />
-        <main className="w-full my-0 mx-auto py-4">{children}</main>
+        <main className="w-full my-0 mx-auto flex">{children}</main>
       </body>
     </html>
   );

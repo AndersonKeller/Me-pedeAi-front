@@ -1,5 +1,5 @@
 import { Establish } from "@/interfaces/establish.interface";
-import { setCookie } from "nookies";
+import { parseCookies, setCookie } from "nookies";
 import { create } from "zustand";
 interface UserStore {
   token: string;
@@ -7,10 +7,12 @@ interface UserStore {
   establish?: Establish;
   setEstablish: (newEstablish: Establish) => void;
 }
-
+const cookies = parseCookies();
 export const userStore = create<UserStore>()((set) => ({
-  token: "",
-  establish: {} as Establish,
+  token: cookies["@mepedeAi-token"] ?? "",
+  establish: cookies["@mepedeAi-establish"]
+    ? JSON.parse(cookies["@mepedeAi-establish"])
+    : ({} as Establish),
   setEstablish: (newEstablish: Establish) =>
     set(
       () => (
