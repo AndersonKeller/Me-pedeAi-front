@@ -23,6 +23,7 @@ export default function RootLayout({
           position="top-center"
           autoClose={3000}
           pauseOnHover={false}
+          // transition={}
           theme="dark"
         />{" "}
         <Header />

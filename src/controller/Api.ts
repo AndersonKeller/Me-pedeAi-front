@@ -116,4 +116,5 @@ export class Service {
     });
     return await res.json();
   }
+  async createOrder() {}
 }

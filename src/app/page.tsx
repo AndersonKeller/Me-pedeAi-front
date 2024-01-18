@@ -9,6 +9,7 @@ export default function Home() {
   const cookies = parseCookies();
   const router = useRouter();
   const api = new Service();
+
   async function retriveEstablish() {
     const res: Establish | undefined = await api.establishRetrieve(
       cookies["@mepedeAi-token"]
@@ -23,7 +24,7 @@ export default function Home() {
     } else {
       retriveEstablish();
     }
-  });
+  }, []);
   return (
     <>
       <Menu />
