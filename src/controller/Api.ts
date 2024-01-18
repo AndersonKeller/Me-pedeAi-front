@@ -116,5 +116,11 @@ export class Service {
     });
     return await res.json();
   }
-  async createOrder() {}
+  async retrieveShop() {
+    const token = this.cookies["@mepedeAi-token"];
+    const res = await fetch(`${this.baseURL}shop/retrieve`, {
+      headers: { ...this.headers, Authorization: `Bearer ${token}` },
+    });
+    return await res.json();
+  }
 }
