@@ -118,9 +118,15 @@ export class Service {
   }
   async retrieveShop() {
     const token = this.cookies["@mepedeAi-token"];
+    try {
+        
     const res = await fetch(`${this.baseURL}shop/retrieve`, {
       headers: { ...this.headers, Authorization: `Bearer ${token}` },
     });
+    
     return await res.json();
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

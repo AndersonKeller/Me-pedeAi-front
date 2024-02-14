@@ -1,15 +1,22 @@
 "use client";
 import { Service } from "@/controller/Api";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export function CardShop() {
   const [url, setUrl] = useState("");
   const api = new Service();
+  const router = useRouter()
   async function getShop() {
     const res = await api.retrieveShop();
     console.log(res);
-    setUrl(res.url);
+    if(res.url){
+
+      setUrl(res.url);
+    }else{
+      router.push("/login")
+    }
   }
   function copyUrl() {
     navigator.clipboard.writeText(url);

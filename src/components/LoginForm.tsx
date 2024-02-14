@@ -31,7 +31,7 @@ export function LoginForm() {
     }
   }
   return (
-    <form autoComplete="off" noValidate onSubmit={handleSubmit(loginHandle)}>
+    <form autoComplete="off" noValidate onSubmit={handleSubmit(loginHandle)} className="w-full flex flex-col items-center justify-center" >
       <Input
         register={register("email")}
         label="email"
