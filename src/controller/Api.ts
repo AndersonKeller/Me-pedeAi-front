@@ -7,6 +7,7 @@ import {
 import { userStore } from "@/store/user.store";
 import { parseCookies } from "nookies";
 import { Establish } from "./../interfaces/establish.interface";
+import { iOrder } from "@/interfaces/order.interface";
 export class Service {
   constructor() {}
   baseURL = "http://localhost:3333/";
@@ -121,6 +122,19 @@ export class Service {
     try {
         
     const res = await fetch(`${this.baseURL}shop/retrieve`, {
+      headers: { ...this.headers, Authorization: `Bearer ${token}` },
+    });
+    
+    return await res.json();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  async getOrders(){
+    const token = this.cookies["@mepedeAi-token"];
+    try {
+        
+    const res:Response  = await fetch(`${this.baseURL}order`, {
       headers: { ...this.headers, Authorization: `Bearer ${token}` },
     });
     
