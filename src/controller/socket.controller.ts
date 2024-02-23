@@ -1,15 +1,22 @@
-import { ordersStore } from "@/store/orders.store";
-import { toast } from "react-toastify";
+
 import { io } from "socket.io-client";
-import { Service } from "./Api";
+
 
 export const socket = io("http://localhost:3131");
 
-// socket.on("update_orders", async (info) => {
-//   toast.info("Novo pedido acabou de chegar", { pauseOnHover: false });
- 
-// });
+export const createConnect=(info:any)=>{
+  socket.on("connect",()=>{
+    console.log(socket.id)
+    socket.emit("my_id_info",info)
+    socket.on("disconnect",()=>{
+      console.log("sefoi")
+    })
+  })
+}
+
+
 export const create_order = (info: any) => {
+  
   socket.emit("create_order", {
     ...info,
   });

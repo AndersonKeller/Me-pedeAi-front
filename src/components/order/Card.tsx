@@ -8,7 +8,7 @@ import { socket } from "@/controller/socket.controller"
 import { toast } from "react-toastify"
 
 export function CardOrder(){
-    const {orders,setOders, socket} = ordersStore()
+    const {orders,setOders, update_orders} = ordersStore()
     const [detailOrder,setDetailOrder] = useState({}as iOrder)
     const [openDetail,setOpenDetail] = useState(false)
     const api = new Service()
@@ -22,7 +22,7 @@ export function CardOrder(){
     }
     useEffect(()=>{
       getOrders()
-      socket
+      update_orders
     },[])
     useEffect(()=>{
       console.log("att")

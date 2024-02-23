@@ -7,11 +7,11 @@ import { create } from "zustand";
 interface OrderStore {
     orders: iOrder[],
     setOders: (orders:iOrder[])=>void
-    socket: Socket
+    update_orders: Socket
 }
 
 export const ordersStore = create<OrderStore>()((set)=>({
-    socket:socket.on("update_orders",(info:iOrder[])=>{
+    update_orders:socket.on("update_orders",(info:iOrder[])=>{
         toast.info("Novo pedido acabou de chegar", { pauseOnHover: false }),
         (()=>set(()=>({
             orders: info

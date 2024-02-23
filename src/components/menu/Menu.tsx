@@ -1,9 +1,12 @@
 "use client";
-import { create_order } from "@/controller/socket.controller";
+import {  createConnect, create_order } from "@/controller/socket.controller";
+import { userStore } from "@/store/user.store";
 import Link from "next/link";
 
 export function Menu() {
+  const {establish} = userStore()
   function postOrder() {
+    createConnect(establish)
     create_order({ id: 345 });
   }
   return (
