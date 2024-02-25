@@ -16,3 +16,4 @@ export const orderSchema = z.object({
   });
 
 export type iOrder = z.infer<typeof orderSchema>
+export type iOrderType = OrderType

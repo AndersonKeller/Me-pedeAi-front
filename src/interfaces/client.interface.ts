@@ -17,4 +17,6 @@ export const returnClientSchema = z.object({
     phone: z.string(),
     address: addressSchema
 })
+
 export type Client = z.infer<typeof returnClientSchema>
+export type iAddress = z.infer<typeof addressSchema>
