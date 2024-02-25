@@ -7,7 +7,7 @@ export function Menu() {
   const {establish} = userStore()
   function postOrder() {
     createConnect(establish)
-    create_order({ id: 345 });
+    create_order({ id: 9 });
   }
   return (
     <aside className="w-max">
