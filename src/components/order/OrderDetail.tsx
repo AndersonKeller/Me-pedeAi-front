@@ -2,6 +2,7 @@ import { iOrder } from "@/interfaces/order.interface";
 import { Address } from "./OrderAddress";
 import "./index.css";
 import { OrderType } from "../oderType/orderType";
+import { ResumeOrder } from "./resume/Resume";
 
 interface OrderdetailProps {
   order: iOrder;
@@ -18,6 +19,9 @@ export function Orderdetail({ order,close }: OrderdetailProps) {
          <OrderType order_type={order.order_type}/>
        </div>
        <div>
+       <p className="text_order font-light">
+           {order.createdAt}
+         </p>
          <p className="text_order font-semibold">
            {order.id} - {order.client.name}
          </p>
@@ -26,7 +30,8 @@ export function Orderdetail({ order,close }: OrderdetailProps) {
          </p>
        </div>
      </div>
-     <Address address={order.client.address} />
+    {order.order_type === "delivery" && <Address address={order.client.address} />}
+   <ResumeOrder orderProducts={order.orderProducts}/>
    </div>
  </div>
   );

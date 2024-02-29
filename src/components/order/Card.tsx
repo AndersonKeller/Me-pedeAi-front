@@ -44,6 +44,7 @@ export function CardOrder(){
         
         return <li className={`${item.status === StatusOrder.finish ? 'bg-gray-400':'bg-gray-300'} w-[16%] min-w-[180px] rounded-lg  p-2 shadow-md shadow-gray-400 cursor-pointer hover:scale-105 transition-all`} key={item.id}>
           <p>{item.status}</p>
+          <p className="text-xs text-gray-900"> {item.createdAt}</p>
           <p className="text-sm text-gray-900">{item.id} - {item.client.name}</p>
           <p className="text-sm text-gray-900 text-right font-bold">{item.client.phone}</p>
           <OrderType order_type={item.order_type}/>
