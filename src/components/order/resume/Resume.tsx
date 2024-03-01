@@ -5,13 +5,15 @@ interface ResumeOrderProps {
 }
 export function ResumeOrder({orderProducts}:ResumeOrderProps){
     console.log(orderProducts)
-    return <ul>
-        <p>Resumo</p>
+    return <>
+        <p className="text-gray-900 font-semibold">Resumo:</p>
+        <ul className="bg-yellow-50 rounded-md p-2">
         {orderProducts.map((item)=>{
             return <li>
-                {item.product.quantity} - {item.product.name}
-                <span>R$: {item.product.price}</span>
+                <p className="text-gray-900">{item.product.quantity} - {item.product.name}
+                <span>R$: {item.product.price}</span></p>
                 </li>
         })}
     </ul>
+    </>
 }

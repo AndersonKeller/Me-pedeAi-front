@@ -25,7 +25,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
+p{
+  font-size: 0.875rem;
+    line-height: 1.25rem;
+}
 input {
   height: 45px;
   border-radius: 8px;
