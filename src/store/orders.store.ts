@@ -1,5 +1,6 @@
+import { Service } from "@/controller/Api";
 import { socket } from "@/controller/socket.controller";
-import {  iOrder } from "@/interfaces/order.interface";
+import {  StatusOrder, iOrder } from "@/interfaces/order.interface";
 import { toast } from "react-toastify";
 import { Socket } from "socket.io-client";
 import { create } from "zustand";
