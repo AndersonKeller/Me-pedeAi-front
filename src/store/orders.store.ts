@@ -11,7 +11,7 @@ interface OrderStore {
     update_orders: Socket
 }
 
-export const ordersStore:any = create<OrderStore>()((set)=>({
+export const ordersStore = create<OrderStore>()((set)=>({
     update_orders:socket.on("update_orders",(info:iOrder[])=>{
         toast.info("Novo pedido acabou de chegar", { pauseOnHover: false }),
         (()=>set(()=>({

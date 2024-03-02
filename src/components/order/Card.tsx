@@ -27,6 +27,11 @@ export function CardOrder(){
        setOders(orderedOrders)
        return true
     }
+    async function filterByType(type:string) {
+      const res: iOrder[] =  await api.getOrders()
+      const filteres = res.filter((order)=>order.order_type===type)
+      setOders(filteres)
+    }
     function openOrder(order:iOrder){
       setDetailOrder(order)
       setOpenDetail(true)
@@ -52,10 +57,10 @@ export function CardOrder(){
       getOrders()
     },[openDetail])
  
-    return <ul className="w-full h-[calc(100vh-80px)] overflow-auto bg-gray-800 p-4">
-      <OrderFilter orders={orders} action={getOrders}/>
+    return <ul className="w-full h-[calc(100vh-80px)] overflow-auto bg-gray-800 p-4 pt-0">
+      <OrderFilter actionType={filterByType} orders={orders} actionStatus={getOrders}/>
       <div className="flex flex-wrap justify-start gap-3">
-      {orders&&orders.map((item:any)=>{
+      {orders.length>0?orders.map((item:any)=>{
         
         return <li className={`${item.status === StatusOrder.finish ? 'bg-gray-400':'bg-gray-300'} w-[16%] min-w-[180px] rounded-lg  p-2 shadow-md shadow-gray-400 cursor-pointer hover:scale-105 transition-all`} key={item.id}>
           <p className={`${item.status==="pending"?"text-cyan-600":"text-red-800"} uppercase text-xs font-semibold`}>{item.status==="pending"?"Aguardando":"Finalizado"}</p>
@@ -70,7 +75,7 @@ export function CardOrder(){
          </div>
           </li>
          
-        })}
+        }):<li className="p-2">Sem pedidos para exibir </li>}
     {openDetail&&<Orderdetail close={close} order={detailOrder}/>}
     </div>
     </ul>
