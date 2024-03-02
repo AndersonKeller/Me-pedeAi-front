@@ -1,8 +1,8 @@
 import { StatusOrder, iOrder } from "@/interfaces/order.interface";
-import { Address } from "./OrderAddress";
-import "./index.css";
-import { OrderType } from "../oderType/orderType";
-import { ResumeOrder } from "./resume/Resume";
+import { Address } from "../orderAddress/OrderAddress";
+import "../index.css";
+import { OrderType } from "../../oderType/orderType";
+import { ResumeOrder } from "../resume/Resume";
 import { Service } from "@/controller/Api";
 import { toast } from "react-toastify";
 import { useState } from "react";

@@ -1,5 +1,5 @@
 import { iAddress } from "@/interfaces/client.interface";
-import "./index.css"
+import "../index.css"
 interface AddressProps {
     address: iAddress
 }
