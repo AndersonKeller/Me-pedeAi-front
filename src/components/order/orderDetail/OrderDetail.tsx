@@ -6,13 +6,14 @@ import { ResumeOrder } from "../resume/Resume";
 import { Service } from "@/controller/Api";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { Wrapper } from "@/components/wrapper/WrapperModal";
 
 interface OrderdetailProps {
   order: iOrder;
-  close: ()=>void
+
 
 }
-export function Orderdetail({ order,close }: OrderdetailProps) {
+export function Orderdetail({ order }: OrderdetailProps) {
   const api = new Service()
   const [charging,setCharging] = useState(false)
   async function finish(id:number){
@@ -26,10 +27,9 @@ export function Orderdetail({ order,close }: OrderdetailProps) {
     }, 1500);
   }
   return (
-   <div className="bg-[rgba(0,0,0,0.5)] fixed z-10 left-0 top-0 w-full h-screen flex items-center justify-center">
    
-   <div className="rounded-xl p-2 pt-4 bg-gray-100 min-w-[320px] flex flex-col gap-3 relative shadow-lg shadow-gray-800">
-   <button className="absolute top-2 right-2 text-gray-900" onClick={close}>X</button>
+   <Wrapper>
+  
      <div className="flex justify-around items-center">
        <div>
          <OrderType order_type={order.order_type}/>
@@ -61,7 +61,7 @@ export function Orderdetail({ order,close }: OrderdetailProps) {
         <p className="text_order font-semibold">Total - R$ {order.total} - <span>{order.payment}</span></p>
       </div>
    <ResumeOrder orderProducts={order.orderProducts}/>
-   </div>
- </div>
+
+   </Wrapper>
   );
 }

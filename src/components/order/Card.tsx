@@ -8,6 +8,7 @@ import { Orderdetail } from "./orderDetail/OrderDetail"
 import { OrderType } from "../oderType/orderType"
 import { toast } from "react-toastify"
 import { OrderFilter } from "./filter/OrderFilter"
+import { wrapperStore } from "@/store/wrapper.store"
 export enum statusFilter  {
     finish= "finish",
     pending= "pending",
@@ -16,7 +17,7 @@ export enum statusFilter  {
 export function CardOrder(){
     const {orders,setOders, update_orders} = ordersStore()
     const [detailOrder,setDetailOrder] = useState({}as iOrder)
-    const [openDetail,setOpenDetail] = useState(false)
+    const {openWrapper,setOpenWrapper} = wrapperStore()
     const api = new Service()
     async function getOrders(status?:string|undefined){
       console.log(status)
@@ -34,11 +35,9 @@ export function CardOrder(){
     }
     function openOrder(order:iOrder){
       setDetailOrder(order)
-      setOpenDetail(true)
+      setOpenWrapper(true)
     }
-    function close(){
-      setOpenDetail(false)
-    }
+
     async function finish(id:number){
      
       const res = await api.updateStatusorder(id,StatusOrder.finish)
@@ -55,7 +54,7 @@ export function CardOrder(){
     },[])
     useEffect(()=>{
       getOrders()
-    },[openDetail])
+    },[open])
  
     return <ul className="w-full h-[calc(100vh-80px)] overflow-auto bg-gray-800 p-4 pt-0">
       <OrderFilter actionType={filterByType} orders={orders} actionStatus={getOrders}/>
@@ -76,7 +75,7 @@ export function CardOrder(){
           </li>
          
         }):<li className="p-2">Sem pedidos para exibir </li>}
-    {openDetail&&<Orderdetail close={close} order={detailOrder}/>}
+    {openWrapper&&<Orderdetail order={detailOrder}/>}
     </div>
     </ul>
 }

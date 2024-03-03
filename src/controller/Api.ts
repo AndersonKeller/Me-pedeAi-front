@@ -1,8 +1,10 @@
+import { PageProps } from './../../.next/types/app/cardapio/page';
 import { CreateEstablish } from "@/interfaces/establish.interface";
 import { LoginData } from "@/interfaces/login.interface";
 import {
   CreateProduct,
   CreateTypeProduct,
+  UpdateTypeProduct,
 } from "@/interfaces/products.interface";
 import { userStore } from "@/store/user.store";
 import { parseCookies } from "nookies";
@@ -78,6 +80,15 @@ export class Service {
   async getTypeProducts(token: string) {
     const res = await fetch(`${this.baseURL}type-product`, {
       headers: { ...this.headers, Authorization: `Bearer ${token}` },
+    });
+    return await res.json();
+  }
+  async updateTypeProducts(id:number, typeProductData:UpdateTypeProduct){
+    const token = this.cookies["@mepedeAi-token"];
+    const res = await fetch(`${this.baseURL}type-product/${id}`, {
+      headers: { ...this.headers, Authorization: `Bearer ${token}` },
+      method:"PATCH", 
+      body:JSON.stringify(typeProductData)
     });
     return await res.json();
   }
