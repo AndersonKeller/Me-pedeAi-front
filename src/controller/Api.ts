@@ -106,7 +106,7 @@ export class Service {
       const res = await fetch(`${this.baseURL}menu/${establishId}`, {
         headers: { ...this.headers, Authorization: `Bearer ${token}` },
       });
-
+     
       return await res.json();
     }
   }

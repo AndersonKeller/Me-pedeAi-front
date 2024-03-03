@@ -20,13 +20,13 @@ export function OrderFilter({orders,actionStatus,actionType}:OrderFilterProps){
         <p>Filtrar por Status:</p>
         <div className="flex gap-3">
         {statusFilters.map((status)=>{
-            return <button key={status.text} onClick={()=>actionStatus(status.value)} className="bg-red-900 uppercase rounded-lg px-4 py-1 focus:bg-blue-950 focus:scale-110 transition-all">{status.text}</button>
+            return <button key={status.text} onClick={()=>actionStatus(status.value)} className="bg-red-900 focus:bg-blue-950 focus:scale-110">{status.text}</button>
         })}
         </div>
         <p>Filtrar por tipo:</p>
         <div className="flex gap-3">
         {typeFilters.map((type)=>{
-            return <button key={type.text} onClick={()=>actionType(type.value)} className="bg-red-900 uppercase rounded-lg px-4 py-1 focus:bg-blue-950 focus:scale-110 transition-all">{type.text}</button>
+            return <button key={type.text} onClick={()=>actionType(type.value)} className="bg-red-900 focus:bg-blue-950 focus:scale-110">{type.text}</button>
         })}
         </div>
     </section>

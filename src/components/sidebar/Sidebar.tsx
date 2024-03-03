@@ -3,7 +3,7 @@ import {  createConnect, create_order } from "@/controller/socket.controller";
 import { userStore } from "@/store/user.store";
 import Link from "next/link";
 
-export function Menu() {
+export function Sidebar() {
   const {establish} = userStore()
   function postOrder() {
     createConnect(establish)

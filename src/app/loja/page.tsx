@@ -1,5 +1,5 @@
 import { CardShop } from "@/components/card/CardShop";
-import { Menu } from "@/components/menu/Menu";
+import { Menu } from "@/components/sidebar/Sidebar";
 
 export default function Loja() {
   return (

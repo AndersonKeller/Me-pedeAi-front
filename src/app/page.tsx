@@ -1,5 +1,5 @@
 "use client";
-import { Menu } from "@/components/menu/Menu";
+import { Sidebar } from "@/components/sidebar/Sidebar";
 import { Service } from "@/controller/Api";
 import { Establish } from "@/interfaces/establish.interface";
 import { useRouter } from "next/navigation";
@@ -27,7 +27,7 @@ export default function Home() {
   }, []);
   return (
     <>
-      <Menu />
+      <Sidebar />
     </>
   );
 }

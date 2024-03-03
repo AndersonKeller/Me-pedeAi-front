@@ -1,5 +1,6 @@
 "use client";
-import { Menu } from "@/components/menu/Menu";
+import { Categories } from "@/components/menu/categories/Categories";
+import { Sidebar } from "@/components/sidebar/Sidebar";
 import { Service } from "@/controller/Api";
 import { iMenu } from "@/interfaces/menu.interface";
 import { useEffect, useState } from "react";
@@ -20,8 +21,9 @@ export default function Cardapio() {
 
   return (
     <>
-      <Menu />
+      <Sidebar />
       <ul className="w-full h-[calc(100vh-80px)] overflow-auto bg-gray-800 p-4">
+          <Categories/>
         <div className="flex flex-wrap justify-start gap-3">
         {menu.id &&
           menu.product.map((item) => {

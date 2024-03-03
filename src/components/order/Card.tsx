@@ -70,8 +70,8 @@ export function CardOrder(){
           <OrderType order_type={item.order_type}/>
           <p className="text-sm text-blue-900 font-bold text-right">R$ {item.total.toFixed(2)}</p>
          <div className="flex justify-between">
-          <button onClick={()=>openOrder(item)} className="bg-gray-200 px-2 py-1 rounded-lg text-sm border border-red-800 text-gray-900 hover:scale-105 transition-all uppercase font-semibold">Ver</button>
-          <button onClick={()=>finish(item.id)} disabled={item.status!=="pending"} className="disabled:border-none disabled:bg-gray-300 disabled:text-gray-400 bg-gray-200 px-2 py-1 rounded-lg text-sm border border-red-800 text-gray-900 hover:scale-105 transition-all uppercase font-semibold">Finalizar</button>
+          <button onClick={()=>openOrder(item)} className="bg-gray-200 border border-red-800 text-gray-900">Ver</button>
+          <button onClick={()=>finish(item.id)} disabled={item.status!=="pending"} className="disabled:border-none disabled:bg-gray-300 disabled:text-gray-400 bg-gray-200  border border-red-800 text-gray-900">Finalizar</button>
          </div>
           </li>
          

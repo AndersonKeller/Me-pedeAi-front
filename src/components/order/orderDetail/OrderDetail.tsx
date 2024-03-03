@@ -47,9 +47,8 @@ export function Orderdetail({ order,close }: OrderdetailProps) {
        </div>
      </div>
      <button onClick={()=>finish(order.id)} disabled={order.status!=="pending" || charging} 
-     className="disabled:border-none disabled:bg-gray-300 disabled:text-gray-400 bg-gray-200 px-2 py-1 
-     rounded-lg text-sm border border-red-800 text-gray-900 hover:scale-105 
-     transition-all uppercase font-semibold">Finalizar</button>
+     className="disabled:border-none disabled:bg-gray-300 disabled:text-gray-400 bg-gray-200 
+      border border-red-800 text-gray-900">Finalizar</button>
     {order.order_type === "delivery" && <div>
       <p className="text_order font-semibold">Endereço</p>
     <Address address={order.client.address} />
