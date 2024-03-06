@@ -4,15 +4,18 @@ import { DeepPartial } from "react-hook-form";
 
 //types
 export const createTypeProductSchema = z.object({
-  name: z.string(),
+  name: z.string().min(3,"Nome é obrigatório"),
   description: z.string(),
-  establish: returnEstablishSchema,
+  establish: returnEstablishSchema.optional()
 });
+
 export const returnTypeProductSchema = createTypeProductSchema
   .extend({
     id: z.number(),
   })
   .omit({ establish: true });
+
+export const updateTypeProductSchema = returnTypeProductSchema.omit({id:true})
 export type CreateTypeProduct = z.infer<typeof createTypeProductSchema>;
 export type TypeProduct = z.infer<typeof returnTypeProductSchema>;
 export type UpdateTypeProduct = DeepPartial<TypeProduct>

@@ -54,7 +54,7 @@ export function CardOrder(){
     },[])
     useEffect(()=>{
       getOrders()
-    },[open])
+    },[openWrapper])
  
     return <ul className="w-full h-[calc(100vh-80px)] overflow-auto bg-gray-800 p-4 pt-0">
       <OrderFilter actionType={filterByType} orders={orders} actionStatus={getOrders}/>

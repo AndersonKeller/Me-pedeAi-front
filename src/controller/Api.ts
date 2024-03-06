@@ -1,3 +1,4 @@
+
 import { PageProps } from './../../.next/types/app/cardapio/page';
 import { CreateEstablish } from "@/interfaces/establish.interface";
 import { LoginData } from "@/interfaces/login.interface";
@@ -10,6 +11,7 @@ import { userStore } from "@/store/user.store";
 import { parseCookies } from "nookies";
 import { Establish } from "./../interfaces/establish.interface";
 import { StatusOrder, iOrder } from "@/interfaces/order.interface";
+import { revalidatePath } from 'next/cache';
 export class Service {
   constructor() {}
   baseURL = "http://localhost:3333/";
@@ -69,13 +71,20 @@ export class Service {
     }
   }
   //types products
-  async createTypeProduct(typeProductData: CreateTypeProduct, token: string) {
+  async createTypeProduct(typeProductData: CreateTypeProduct) {
+    console.log(typeProductData)
+    const token = this.cookies["@mepedeAi-token"];
     const res = await fetch(`${this.baseURL}type-product`, {
       headers: { ...this.headers, Authorization: `Bearer ${token}` },
       method: "POST",
       body: JSON.stringify(typeProductData),
+      next:{
+        tags:["cardapio"]
+      }
     });
+    // revalidatePath('/cardapio')
     return await res.json();
+
   }
   async getTypeProducts(token: string) {
     const res = await fetch(`${this.baseURL}type-product`, {

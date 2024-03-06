@@ -7,6 +7,7 @@ import { Service } from "@/controller/Api";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { Wrapper } from "@/components/wrapper/WrapperModal";
+import { wrapperStore } from "@/store/wrapper.store";
 
 interface OrderdetailProps {
   order: iOrder;
@@ -16,13 +17,14 @@ interface OrderdetailProps {
 export function Orderdetail({ order }: OrderdetailProps) {
   const api = new Service()
   const [charging,setCharging] = useState(false)
+  const {setOpenWrapper} = wrapperStore()
   async function finish(id:number){
     setCharging(true)
     const res = await api.updateStatusorder(id,StatusOrder.finish)
     
     toast.success("Pedido Finalizado com sucesso!")
     setTimeout(() => {
-      close()
+      setOpenWrapper(false)
       setCharging(false)
     }, 1500);
   }

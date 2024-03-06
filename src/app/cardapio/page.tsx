@@ -25,6 +25,7 @@ export default function Cardapio() {
       <ul className="w-full h-[calc(100vh-80px)] overflow-auto bg-gray-800 p-4">
           <Categories/>
         <div className="flex flex-wrap justify-start gap-3">
+          <p className="w-full">Produtos:</p>
         {menu.id &&
           menu.product.map((item) => {
             return <li className="relative overflow-hidden w-[19%] min-w-[180px] p-2 rounded-lg shadow-md shadow-gray-400 cursor-pointer hover:scale-105 transition-all bg-gray-400" key={item.id}>
