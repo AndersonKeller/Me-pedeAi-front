@@ -1,4 +1,6 @@
-interface InputProps {
+import React from "react";
+
+interface InputProps extends React.HTMLProps<HTMLInputElement> {
   placeholder: string;
   label: string;
   type?: string;
@@ -12,7 +14,7 @@ export function Input({
   type,
   register,
   errorMsg,
-
+  ...rest
 }: InputProps) {
   return (
     <fieldset className="flex flex-col gap-1 py-1">
@@ -22,7 +24,7 @@ export function Input({
         {...register}
         type={type ? type : "text"}
         placeholder={placeholder}
-   
+        {...rest}
       />
       {errorMsg && <span className="text-red-500 lowercase">{errorMsg}</span>}
     </fieldset>

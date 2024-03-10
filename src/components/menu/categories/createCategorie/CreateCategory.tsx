@@ -22,7 +22,7 @@ export function CreateCategory(){
         console.log(data)
         const res = await api.createTypeProduct(data)
         console.log(res)
-        toast.success("Catgoria criada com sucesso!")
+        toast.success("Categoria criada com sucesso!")
         setTimeout(() => {
           setOpenWrapper(false)
           

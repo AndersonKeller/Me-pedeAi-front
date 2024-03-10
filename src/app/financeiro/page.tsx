@@ -1,9 +1,9 @@
-import { Menu } from "@/components/sidebar/Sidebar";
+import { Sidebar } from "@/components/sidebar/Sidebar";
 
 export default function Financial() {
   return (
     <>
-      <Menu />
+      <Sidebar />
     </>
   );
 }

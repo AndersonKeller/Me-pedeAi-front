@@ -1,10 +1,10 @@
 
-import { PageProps } from './../../.next/types/app/cardapio/page';
 import { CreateEstablish } from "@/interfaces/establish.interface";
 import { LoginData } from "@/interfaces/login.interface";
 import {
   CreateProduct,
   CreateTypeProduct,
+  UpdateProduct,
   UpdateTypeProduct,
 } from "@/interfaces/products.interface";
 import { userStore } from "@/store/user.store";
@@ -171,6 +171,22 @@ export class Service {
       const res:Response  = await fetch(`${this.baseURL}order/${id}/status`, {
         headers: { ...this.headers, Authorization: `Bearer ${token}` },
         body: JSON.stringify(body),
+        method:"PATCH"
+      });
+      
+      return await res.json();
+      } catch (error) {
+        console.log(error)
+      }
+  }
+  async updateProduct(id:number,productData:UpdateProduct){
+    const token = this.cookies["@mepedeAi-token"];
+    console.log(productData)
+    const body = JSON.stringify(productData)
+    try {
+      const res:Response  = await fetch(`${this.baseURL}product/${id}`, {
+        headers: { ...this.headers, Authorization: `Bearer ${token}` },
+        body: body,
         method:"PATCH"
       });
       

@@ -10,7 +10,7 @@ export function ResumeOrder({orderProducts}:ResumeOrderProps){
         <ul className="bg-yellow-50 rounded-md p-2">
         {orderProducts.map((item)=>{
             return <li key={item.id}>
-                <p className="text-gray-900">{item.product.quantity} -
+                <p className="text-gray-900">{item.quantity} -
                  {item.product.name}
                 - <span className="text-slate-800 font-semibold"> R$: {item.product.price}</span></p>
                 </li>
