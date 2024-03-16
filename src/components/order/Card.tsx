@@ -31,7 +31,10 @@ export function CardOrder(){
     async function filterByType(type:string) {
       const res: iOrder[] =  await api.getOrders()
       const filteres = res.filter((order)=>order.order_type===type)
-      setOders(filteres)
+      const finishedOrders = filteres.filter((order)=>order.status === StatusOrder.finish)
+      const pendingOrders = filteres.filter((order)=>order.status === StatusOrder.pending)
+      const orderedOrders = [...pendingOrders,...finishedOrders]
+      setOders(orderedOrders)
     }
     function openOrder(order:iOrder){
       setDetailOrder(order)

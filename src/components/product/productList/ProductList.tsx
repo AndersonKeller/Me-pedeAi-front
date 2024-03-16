@@ -20,7 +20,6 @@ export function ProductList(){
     const [detailproduct,setDetailProduct] = useState({}as Product | null)
     
     function openProductWrapper(prod:Product){
-      console.log(prod)
       setDetailProduct(prod)
       setOpenWrapper(true)
     }
@@ -29,7 +28,7 @@ export function ProductList(){
         let result:ProductListByType[] = []
         if (res) {
         res.product.forEach((item)=>{
-          console.log(item)
+
           const findType = result.find((res)=>String(item.type.name) === String(res.name))
           if(!findType){
             result.push({id:String(item.id),name:item.type.name,products:[item]})
@@ -38,7 +37,7 @@ export function ProductList(){
             findIndex>=0&& result[findIndex].products.push(item)
           }
         })
-        console.log(result)
+      
           setOrdersByType(result)
           setMenu(res);
         }

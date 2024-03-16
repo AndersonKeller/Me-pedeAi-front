@@ -1,3 +1,5 @@
+import { config } from './../middleware';
+import { create } from 'zustand';
 
 import { CreateEstablish } from "@/interfaces/establish.interface";
 import { LoginData } from "@/interfaces/login.interface";
@@ -10,18 +12,22 @@ import {
 import { userStore } from "@/store/user.store";
 import { parseCookies } from "nookies";
 import { Establish } from "./../interfaces/establish.interface";
-import { StatusOrder, iOrder } from "@/interfaces/order.interface";
-import { revalidatePath } from 'next/cache';
+import { StatusOrder } from "@/interfaces/order.interface";
+
 export class Service {
-  constructor() {}
+  
+  constructor() {
+   
+  }
   baseURL = "http://localhost:3333/";
+ 
   headers = {
     "Content-Type": "application/json; charset=utf-8",
   };
   setToken = userStore().setToken;
   setEstablish = userStore().setEstablish;
-
   cookies = parseCookies();
+ 
   //establish
   async establishLogin(loginData: LoginData): Promise<string | undefined> {
     try {
@@ -53,11 +59,12 @@ export class Service {
     return await res.json();
   }
   async establishRetrieve(token: string): Promise<Establish | undefined> {
+    
     try {
-      const res = await fetch(`${this.baseURL}establish/retrieve`, {
+      const res:any = await fetch(`${this.baseURL}establish/retrieve`, {
         headers: { ...this.headers, Authorization: `Bearer ${token}` },
       });
-
+        
       if (res.status == 201) {
         const establish = await res.json();
         this.setEstablish(establish);
@@ -72,7 +79,7 @@ export class Service {
   }
   //types products
   async createTypeProduct(typeProductData: CreateTypeProduct) {
-    console.log(typeProductData)
+   
     const token = this.cookies["@mepedeAi-token"];
     const res = await fetch(`${this.baseURL}type-product`, {
       headers: { ...this.headers, Authorization: `Bearer ${token}` },
@@ -82,14 +89,17 @@ export class Service {
         tags:["cardapio"]
       }
     });
+    
     // revalidatePath('/cardapio')
     return await res.json();
 
   }
   async getTypeProducts(token: string) {
-    const res = await fetch(`${this.baseURL}type-product`, {
+    const res:any = await fetch(`${this.baseURL}type-product`, {
       headers: { ...this.headers, Authorization: `Bearer ${token}` },
-    });
+      
+    })  
+    
     return await res.json();
   }
   async updateTypeProducts(id:number, typeProductData:UpdateTypeProduct){
@@ -188,6 +198,19 @@ export class Service {
         headers: { ...this.headers, Authorization: `Bearer ${token}` },
         body: body,
         method:"PATCH"
+      });
+      
+      return await res.json();
+      } catch (error) {
+        console.log(error)
+      }
+  }
+  async getClientsEstablish(){
+    const token = this.cookies["@mepedeAi-token"];
+    try {
+      const res:Response  = await fetch(`${this.baseURL}establish/clients`, {
+        headers: { ...this.headers, Authorization: `Bearer ${token}` },
+        
       });
       
       return await res.json();
