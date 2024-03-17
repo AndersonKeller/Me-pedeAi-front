@@ -218,4 +218,17 @@ export class Service {
         console.log(error)
       }
   }
+  async getFinancial(){
+    const token = this.cookies["@mepedeAi-token"];
+    try {
+      const res:Response  = await fetch(`${this.baseURL}financial`, {
+        headers: { ...this.headers, Authorization: `Bearer ${token}` },
+        
+      });
+      
+      return await res.json();
+      } catch (error) {
+        console.log(error)
+      }
+  }
 }

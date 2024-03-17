@@ -11,6 +11,12 @@ export enum StatusOrder {
   finish = "finish",
   pending = "pending"
 }
+export enum Payment {
+  pix = "pix",
+  dinheiro = "dinheiro",
+  credito = "crédito",
+  debito = "débito"
+}
 export const orderProductSchema = z.object({
   id: z.number(),
   quantity: z.number(),
